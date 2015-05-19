@@ -1,0 +1,11 @@
+{
+  "name"         : "ExamenEA",
+  "version"      : "0.0.1",
+  "description"  : "App para Examen EA",
+  "main"         : "server.js",
+  "author"       : "AlbertSantamaria",
+  "dependencies" : {
+    "express"    : "~3.4.4",
+    "mongoose"   : "~3.6.2"
+  }
+}

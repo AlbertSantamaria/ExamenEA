@@ -1,0 +1,83 @@
+<!doctype html>
+
+<html ng-app="MainApp">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Examen EA</title>
+	<!-- Cargamos bootstrap -->
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"></link>
+	<!-- Cargamos angular -->
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<!-- Cargamos el javascript de angular -->
+	<script src="core.js"></script>
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body ng-controller="mainController">
+	<div class="container">
+
+		<div class="jumbotron text-center" ng-prueba>
+			<h1>Backoffice - Mensajería</h1>
+			<p></p>
+			<h2>Mensajes Registrados: <span class="label label-success">{{ messages.length }}</span></h2>
+
+
+		</div>
+
+		<div class="row">
+			<div class="col-sm-8">
+				<table class="table table-striped">
+					<tr class="info">
+						<td>User Name</td>
+						<td>Date</td>
+						<td>Race Name</td>
+				        <td>Content</td>
+					</tr>
+					<tr ng-repeat="message in messages | filter:searchText | filter:search:strict" ng-click="selectObject(message)">
+						<td>{{ message.username }}</td>
+						<td>{{ message.date }}</td>
+						<td>{{ message.racename }}</td>
+				       		<td>{{ message.content }}</td>						
+					</tr>
+				</table>					
+			</div>
+			<div class="col-sm-4 text-center">
+			<div>
+			<h1><span class="glyphicon glyphicon-th-list" ></span> CRUD Pannel</h1>
+				<form name="myForm">
+					<div class="form-group">
+						<input type="text" class="form-control input-lg text-center" placeholder="User Name" ng-model="newMessage.username" required><br>
+						<input type="text" class="form-control input-lg text-center" placeholder="Date" ng-model="newMessage.date" required><br>
+						<input type="text" class="form-control input-lg text-center" placeholder="Race Name" ng-model="newMessage.racename" required><br>
+						<input type="text" class="form-control input-lg text-center" placeholder="Content" ng-model="newMessage.content" required></div>
+
+					<!-- Acciones que podemos realizar en el formulario -->
+					<button type="submit" class="btn btn-success btn-lg btn-block" ng-click="registrarMessage()" ng-disabled="myForm.$invalid || selected">Registrar</button>
+					<br>
+					<button type="submit" class="btn btn-warning btn-lg btn-block" ng-click="modificarMessage(newMessage)" ng-disabled="!newMessage.username || !newMessage.date || !newMessage.racename ||!newMessage.content || !selected">Modificar</button>
+					<br>
+					<button type="submit" class="btn btn-danger btn-lg btn-block" ng-click="borrarMessage(newMessage)" ng-disabled="!newMessage.username || !newMessage.date || !newMessage.racename ||!newMessage.content || !selected">Borrar</button>
+				</form>
+				<span>
+				</div>
+				<p>
+				</p>
+
+				<div>
+				<h1><span class="glyphicon glyphicon-search"></span>  Search Pannel</h1>
+				<form name="SearchForm">
+					<div class="form-group">
+					<input type="text" class="form-control input-lg text-center" placeholder="Any Field"ng-model="search.$"> <br>
+					<input type="text" class="form-control input-lg text-center" placeholder="Username only"ng-model="search.username"><br>
+					<input type="text" class="form-control input-lg text-center" placeholder="Date only"ng-model="search.date"><br>
+					<input type="text" class="form-control input-lg text-center" placeholder="Racename only"ng-model="search.racename"><br>		
+					<input type="text" class="form-control input-lg text-center" placeholder="Content only"ng-model="search.content"><br>		
+					</div>
+				</form></div>
+				</span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
